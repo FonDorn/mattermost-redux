@@ -28,8 +28,6 @@ export function getPost(postId) {
 
         try {
             post = await Client4.getPost(postId);
-            post.message = messageEncrypt(post.message);
-            console.warn(post.message);
             getProfilesAndStatusesForPosts([post], dispatch, getState);
         } catch (error) {
             forceLogoutIfNecessary(error, dispatch, getState);
@@ -66,8 +64,11 @@ export function createPost(post, files = []) {
             return {data: true};
         }
 
+        const message = messageEncrypt(post.message);
+        console.warn(message);
         let newPost = {
             ...post,
+            message,
             pending_post_id: pendingPostId,
             create_at: timestamp,
             update_at: timestamp,
