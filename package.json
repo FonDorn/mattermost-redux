@@ -16,6 +16,7 @@
     "harmony-reflect": "1.6.0",
     "isomorphic-fetch": "2.2.1",
     "mime-db": "1.33.0",
+    "react-native-rsa-native": "^1.0.24",
     "redux": "4.0.0",
     "redux-action-buffer": "1.2.0",
     "redux-batched-actions": "0.3.0",

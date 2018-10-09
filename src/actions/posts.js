@@ -13,6 +13,7 @@ import * as Selectors from 'selectors/entities/posts';
 import {getConfig} from 'selectors/entities/general';
 
 import {parseNeededCustomEmojisFromText} from 'utils/emoji_utils';
+import {messageEncrypt} from 'utils/encrypt'
 
 import {bindClientFunc, forceLogoutIfNecessary} from './helpers';
 import {logError} from './errors';
@@ -24,9 +25,11 @@ export function getPost(postId) {
     return async (dispatch, getState) => {
         dispatch({type: PostTypes.GET_POSTS_REQUEST}, getState);
         let post;
-        console.warn('test');
+
         try {
             post = await Client4.getPost(postId);
+            post.message = messageEncrypt(post.message);
+            console.warn(post.message);
             getProfilesAndStatusesForPosts([post], dispatch, getState);
         } catch (error) {
             forceLogoutIfNecessary(error, dispatch, getState);
