@@ -64,7 +64,7 @@ export function createPost(post, files = []) {
             return {data: true};
         }
 
-        const message = messageEncrypt(post.message);
+        const message = await messageEncrypt(post.message);
         console.warn(message);
         let newPost = {
             ...post,
