@@ -24,7 +24,7 @@ export function getPost(postId) {
     return async (dispatch, getState) => {
         dispatch({type: PostTypes.GET_POSTS_REQUEST}, getState);
         let post;
-
+        console.warn('test');
         try {
             post = await Client4.getPost(postId);
             getProfilesAndStatusesForPosts([post], dispatch, getState);
